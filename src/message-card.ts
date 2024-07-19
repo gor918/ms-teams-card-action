@@ -18,6 +18,7 @@ export function createMessageCard(
 
   const messageCard = {
     type: 'AdaptiveCard',
+    summary: notificationSummary,
     body: [
       {
         type: 'Container',
