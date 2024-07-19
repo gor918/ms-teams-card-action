@@ -121,7 +121,7 @@ export function createMessageCard(
       },
     ],
     $schema: 'http://adaptivecards.io/schemas/adaptive-card.json',
-    version: '1.0',
+    version: '1.5',
     padding: 'None',
   };
 
