@@ -38,6 +38,7 @@ export function createMessageCard(
       },
       {
         type: 'Container',
+        id: '7d00f965-40bb-9fc3-ff7b-a9b82a09ead4',
         padding: 'Default',
         items: [
           {
@@ -87,6 +88,7 @@ export function createMessageCard(
       },
       {
         type: 'Container',
+        id: '353b659f-b668-fac0-5b7f-5d2f1bdb46ac',
         padding: 'Default',
         items: [
           {
@@ -121,7 +123,7 @@ export function createMessageCard(
       },
     ],
     $schema: 'http://adaptivecards.io/schemas/adaptive-card.json',
-    version: '1.5',
+    version: '1.0',
     padding: 'None',
   };
 
