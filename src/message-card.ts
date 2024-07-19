@@ -10,14 +10,6 @@ export function createMessageCard(
   repoUrl: string,
   timestamp: string
 ): any {
-  if (!notificationSummary) {
-    throw new Error('Notification summary is required');
-  }
-
-  if (!commit?.data?.commit?.author) {
-    throw new Error('Commit data is incomplete');
-  }
-
   const avatar_url: string = author?.avatar_url
     ? author.avatar_url
     : 'https://www.cdnlogo.com/logos/g/69/github-icon.svg';
