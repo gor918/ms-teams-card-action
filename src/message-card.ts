@@ -11,7 +11,6 @@ export function createMessageCard(
   timestamp: string
 ): any {
   const avatar_url = author?.avatar_url ? author.avatar_url : 'https://www.cdnlogo.com/logos/g/69/github-icon.svg';
-
   const author_url = author?.login && author.html_url ? `[(@${author.login})](${author.html_url}) ` : '';
 
   const messageCard = {
