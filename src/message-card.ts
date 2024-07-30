@@ -15,30 +15,62 @@ export function createMessageCard(
   const author_url = author?.login && author.html_url ? `[(@${author.login})](${author.html_url}) ` : '';
 
   const messageCard = {
-    '@type': 'MessageCard',
-    '@context': 'https://schema.org/extensions',
-    summary: notificationSummary,
-    themeColor: notificationColor,
-    title: notificationSummary,
-    sections: [
+    type: 'AdaptiveCard',
+    $schema: 'http://adaptivecards.io/schemas/adaptive-card.json',
+    version: '1.2',
+    body: [
       {
-        activityTitle: `**CI #${runNum} (commit ${sha.substring(0, 7)})** on [${repoName}](${repoUrl})`,
-        activityImage: avatar_url,
-        activitySubtitle: `by ${commit.data.commit.author.name} ${author_url}on ${timestamp}`,
+        type: 'TextBlock',
+        text: notificationSummary,
+        weight: 'Bolder',
+        size: 'Medium',
+        color: notificationColor,
+      },
+      {
+        type: 'ColumnSet',
+        columns: [
+          {
+            type: 'Column',
+            width: 'auto',
+            items: [
+              {
+                type: 'Image',
+                url: avatar_url,
+                size: 'Small',
+                style: 'Person',
+              },
+            ],
+          },
+          {
+            type: 'Column',
+            width: 'stretch',
+            items: [
+              {
+                type: 'TextBlock',
+                text: `**CI #${runNum} (commit ${sha.substring(0, 7)})** on [${repoName}](${repoUrl})`,
+                wrap: true,
+              },
+              {
+                type: 'TextBlock',
+                text: `by ${commit.data.commit.author.name} ${author_url}on ${timestamp}`,
+                wrap: true,
+                spacing: 'None',
+              },
+            ],
+          },
+        ],
       },
     ],
-    potentialAction: [
+    actions: [
       {
-        '@context': 'http://schema.org',
-        target: [`${repoUrl}/actions/runs/${runId}`],
-        '@type': 'ViewAction',
-        name: 'View Workflow Run',
+        type: 'Action.OpenUrl',
+        title: 'View Workflow Run',
+        url: `${repoUrl}/actions/runs/${runId}`,
       },
       {
-        '@context': 'http://schema.org',
-        target: [commit.data.html_url],
-        '@type': 'ViewAction',
-        name: 'View Commit Changes',
+        type: 'Action.OpenUrl',
+        title: 'View Commit Changes',
+        url: commit.data.html_url,
       },
     ],
   };
